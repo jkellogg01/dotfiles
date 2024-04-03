@@ -36,9 +36,12 @@ return {
     -- Mason-lspconfig
     {
         "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+        },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "tsserver", "gopls", "clangd" },
+                ensure_installed = { "lua_ls", "tsserver", "gopls", "clangd", "rust_analyzer" },
             })
         end,
     },
@@ -46,7 +49,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
             -- Setup language servers.
             local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup({
@@ -59,6 +62,12 @@ return {
                 capabilities = capabilities,
             })
             lspconfig.clangd.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.emmet_ls.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.tailwindcss.setup({
                 capabilities = capabilities,
             })
 

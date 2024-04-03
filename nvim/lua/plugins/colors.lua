@@ -3,12 +3,9 @@ return {
         "rose-pine/neovim",
         name = "rose-pine",
         config = function()
-            vim.o.termguicolors = true
-            vim.o.background = "dark"
-            vim.cmd([[
-                silent! colorscheme rose-pine
-                hi Normal guibg=#00000000
-            ]])
+            vim.cmd.colorscheme("rose-pine")
+            vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
         end,
     },
 }
