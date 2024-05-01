@@ -1,0 +1,31 @@
+{
+    "layer": "top",
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["network", "pulseaudio", "battery", "clock"],
+    "sway/window": {
+        "max-length": 50
+    },
+    "network": {
+        "format-ethernet": "ETH",
+        "format-wifi": "WIFI {essid} {signalStrength}",
+        "format-disconnected": "SOL",
+        "tooltip-format": "{ipaddr}\nUP: {bandwidthUpBytes}\nDOWN: {bandwidthDownBytes}",
+        "tooltip-format-disconnected": "you're on your own, buddy"
+    },
+    "pulseaudio": {
+        "format": "VOL {volume}% {icon}",
+        "format-icons": {
+            "headphone": "[HP]",
+            "hdmi": "[HDMI]",
+            "speaker": "[SPKR]",
+            "default": "[OTHER]"
+        }
+    },
+    "battery": {
+        "format": "BAT {capacity}%"
+    },
+    "clock": {
+        "format-alt": "{:%a, %d. %b  %H:%M}"
+    }
+}
