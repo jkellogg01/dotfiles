@@ -1,18 +1,12 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
 
-font pango: JetBrainsMonoNerdFont Medium 12
-
-gaps inner 10px
-gaps outer 5px
+font pango: Iosevka 14
+gaps inner 10
 default_border pixel 2
 
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
+# Mod4 = Logo key. Use Mod1 for Alt.
 set $mod Mod1
 # Home row direction keys, like vim
 set $left h
@@ -20,17 +14,16 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
+set $term wezterm
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi --show drun
-set $menu_full wofi --show run
+set $menu wofi -S drun
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output DP-1 mode 2560x1440@143.972Hz pos 2560 0 bg /usr/share/backgrounds/rose-pine/moon.jpg fill
+output * bg /usr/share/backgrounds/downloaded/city-dark.jpg fill
 #
 # Example configuration:
 #
@@ -42,10 +35,10 @@ output DP-1 mode 2560x1440@143.972Hz pos 2560 0 bg /usr/share/backgrounds/rose-p
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -65,8 +58,6 @@ output DP-1 mode 2560x1440@143.972Hz pos 2560 0 bg /usr/share/backgrounds/rose-p
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-input "type:pointer" accel_profile flat
-
 ### Key bindings
 #
 # Basics:
@@ -80,7 +71,9 @@ input "type:pointer" accel_profile flat
     # Start your launcher
     bindsym $mod+d exec $menu
 
-    bindsym $mod+Shift+d exec $menu_full
+    bindsym XF86AudioMute exec pamixer --toggle-mute
+    bindsym XF86AudioRaiseVolume exec pamixer -i 5
+    bindsym XF86AudioLowerVolume exec pamixer -d 5
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -212,7 +205,16 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-	swaybar_command waybar
+    swaybar_command waybar
 }
+
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
 
 include /etc/sway/config.d/*

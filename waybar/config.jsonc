@@ -14,13 +14,7 @@
         "tooltip-format-disconnected": "you're on your own, buddy"
     },
     "pulseaudio": {
-        "format": "VOL {volume}% {icon}",
-        "format-icons": {
-            "headphone": "[HP]",
-            "hdmi": "[HDMI]",
-            "speaker": "[SPKR]",
-            "default": "[OTHER]"
-        }
+        "format": "VOL {volume}%"
     },
     "battery": {
         "format": "BAT {capacity}%"
